@@ -250,7 +250,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jListNombresFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jListNombresFocusGained
         //Click en la lista de nombres
         int indiceLista = jListNombres.getSelectedIndex();
-        lbCantidadQueDebe.setText(persona.getDineroAPagar()+"");
+        //lbCantidadQueDebe.setText(persona.getDineroAPagar()+"");
         
     }//GEN-LAST:event_jListNombresFocusGained
 
