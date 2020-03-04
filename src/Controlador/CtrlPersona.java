@@ -12,10 +12,5 @@ import Modelo.Persona;
  * @author plupy
  */
 public class CtrlPersona {
-    private nombre;
-    
-    public void crearPersona(nombre){
-        Persona persona = new Persona(nombre);
-    }
     
 }
