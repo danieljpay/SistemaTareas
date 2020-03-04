@@ -240,7 +240,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         agregarDato(txtNuevaPersona.getText(), modeloListaNombres);
         Persona persona = new Persona(txtNuevaPersona.getText());
         txtNuevaPersona.setText("");
-        //int numeroRandom;
     }//GEN-LAST:event_btnAgregarNombreActionPerformed
 
     private void btnEliminarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPersonaActionPerformed
