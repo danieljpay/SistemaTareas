@@ -44,7 +44,11 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
     public void eliminarDato(int index, DefaultListModel lista){
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Realmente desea eliminar este nombre?");
         if(respuesta == 0){
+            listaPersonas.remove(index);  //se elimina la persona del array de personas
             lista.remove(index);
+            modeloListaTareas.clear();
+            lbFechaTarea.setText("");
+            txtCantidadQueDebe.setText("");
         }
     }
     
@@ -82,9 +86,9 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         txtIngresaSuPrecio = new javax.swing.JTextField();
         txtIngresaFecha = new javax.swing.JTextField();
         lbIngresaFecha = new javax.swing.JLabel();
+        lbFechaTarea = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setFocusable(false);
 
         lbTitulo.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
         lbTitulo.setText("NicoleTareas");
@@ -116,6 +120,11 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jListNombres);
 
+        jListTareas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListTareasMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jListTareas);
 
         btnAgregarNombre.setText("Agregar nombre");
@@ -174,21 +183,24 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(lbNuevaPersona)
                                 .addComponent(txtNuevaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtAbono, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(66, 299, Short.MAX_VALUE)
+                                .addGap(66, 314, Short.MAX_VALUE)
                                 .addComponent(btnAbonar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(94, 94, 94))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbTareasPendientes)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnEliminarTarea)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lbFechaTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnEliminarTarea))
                                 .addComponent(btnAgregarTarea)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(lbCantidadQueDebe)
@@ -208,7 +220,7 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbIngresaFecha)
                             .addComponent(txtIngresaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 42, Short.MAX_VALUE))))
+                        .addGap(0, 57, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(306, 306, 306)
                 .addComponent(lbTitulo)
@@ -241,13 +253,11 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnEliminarTarea)
-                                        .addGap(0, 59, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(lbCantidadQueDebe))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lbFechaTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnEliminarTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lbCantidadQueDebe))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtTareaNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -283,70 +293,119 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
 
     private void btnAgregarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarNombreActionPerformed
         //Botón agregar nombre
-        agregarDato(txtNuevaPersona.getText(), modeloListaNombres); //se agrega el nombre a la vista de la lista
-        String nombrePersona = txtNuevaPersona.getText();
-        Persona nuevaPersona = new Persona(nombrePersona);
-        listaPersonas.add(nuevaPersona);  //se crea la persona y se mete al arryalist
-        txtCantidadQueDebe.setText(nuevaPersona.getDineroAPagar()+"");
-        txtNuevaPersona.setText("");    //setea jText en blanco
+        try{
+            if(txtNuevaPersona.getText().equals("")){
+                throw new CampoVacioException("Falta llenar un campo");
+            }
+            agregarDato(txtNuevaPersona.getText(), modeloListaNombres); //se agrega el nombre a la vista de la lista
+            String nombrePersona = txtNuevaPersona.getText();
+            Persona nuevaPersona = new Persona(nombrePersona);
+            listaPersonas.add(nuevaPersona);  //se crea la persona y se mete al arryalist
+            txtCantidadQueDebe.setText(nuevaPersona.getDineroAPagar()+"");
+            txtNuevaPersona.setText("");    //setea jText en blanco
+        }
+        catch(CampoVacioException ex1){
+            JOptionPane.showMessageDialog(null, "Debe llenar el campo del nombre de la persona para agregar");
+        }
     }//GEN-LAST:event_btnAgregarNombreActionPerformed
 
     private void btnEliminarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPersonaActionPerformed
         //Botón eliminar nombre
-        listaPersonas.remove(jListNombres.getSelectedIndex());  //se elimina la persona del array de personas
-        eliminarDato(jListNombres.getSelectedIndex(), modeloListaNombres);  //elimina el nombre seleccionado de la lista grafica de nombres
+        int personaSeleccionada = jListNombres.getSelectedIndex();
+        eliminarDato(personaSeleccionada, modeloListaNombres);  //elimina el nombre seleccionado de la lista grafica de nombres
     }//GEN-LAST:event_btnEliminarPersonaActionPerformed
 
     private void btnAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTareaActionPerformed
         //Botón agregar tarea
-        int personaSeleccionada = jListNombres.getSelectedIndex();     //índice de la persona dentro de la lista
-        Tarea nuevaTarea = new Tarea(txtTareaNueva.getText(), Integer.parseInt(txtIngresaSuPrecio.getText()), txtIngresaFecha.getText());    //creación del objeto tarea
-        listaPersonas.get(personaSeleccionada).asignarTarea(nuevaTarea);    //le asignamos la tarea a la persona dentro de la lista con el índice
-        //Incrementa el dinero de la persona con cada tarea que se le agregue
-        listaPersonas.get(personaSeleccionada).incrementarDineroAPagar(Integer.parseInt(txtIngresaSuPrecio.getText()));
-        
-        //reiniciamos los campos
-        txtTareaNueva.setText("");
-        txtIngresaSuPrecio.setText("");
-        txtIngresaFecha.setText("");
-        modeloListaTareas.clear();
-        
-        for(int i=0; i<listaPersonas.get(personaSeleccionada).getTareas().size(); i++){
-            agregarDato(listaPersonas.get(personaSeleccionada).getTareas().get(i).getNombre(), modeloListaTareas);
+        try{
+            int personaSeleccionada = jListNombres.getSelectedIndex();     //índice de la persona dentro de la lista
+            Tarea nuevaTarea = new Tarea(txtTareaNueva.getText(), Integer.parseInt(txtIngresaSuPrecio.getText()), txtIngresaFecha.getText());    //creación del objeto tarea
+            listaPersonas.get(personaSeleccionada).asignarTarea(nuevaTarea);    //le asignamos la tarea a la persona dentro de la lista con el índice
+            //Incrementa el dinero de la persona con cada tarea que se le agregue
+            listaPersonas.get(personaSeleccionada).incrementarDineroAPagar(Integer.parseInt(txtIngresaSuPrecio.getText()));
+
+            //reiniciamos los campos
+            txtTareaNueva.setText("");
+            txtIngresaSuPrecio.setText("");
+            txtIngresaFecha.setText("");
+            modeloListaTareas.clear();
+
+            for(int i=0; i<listaPersonas.get(personaSeleccionada).getTareas().size(); i++){
+                agregarDato(listaPersonas.get(personaSeleccionada).getTareas().get(i).getNombre(), modeloListaTareas);
+            }
+            txtCantidadQueDebe.setText(listaPersonas.get(personaSeleccionada).getDineroAPagar()+"");
         }
-        txtCantidadQueDebe.setText(listaPersonas.get(personaSeleccionada).getDineroAPagar()+"");
+        catch(ArrayIndexOutOfBoundsException ex1){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar a una persona de la lista");
+        }
+        catch(NumberFormatException ex2){
+            JOptionPane.showMessageDialog(null, "Faltó llenar un campo sobre la tarea");
+        }
     }//GEN-LAST:event_btnAgregarTareaActionPerformed
 
     private void btnEliminarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTareaActionPerformed
         //Botón eliminar tarea
-        int personaSeleccionada = jListNombres.getSelectedIndex();
-        int tareaAEliminar = jListTareas.getSelectedIndex();
-        listaPersonas.get(personaSeleccionada).eliminarTarea(tareaAEliminar);
-        
-        modeloListaTareas.clear();
-        for(int i=0; i<listaPersonas.get(personaSeleccionada).getTareas().size(); i++){
-            agregarDato(listaPersonas.get(personaSeleccionada).getTareas().get(i).getNombre(), modeloListaTareas);
+        try{
+            int personaSeleccionada = jListNombres.getSelectedIndex();
+            int tareaAEliminar = jListTareas.getSelectedIndex();
+            listaPersonas.get(personaSeleccionada).eliminarTarea(tareaAEliminar);
+
+            modeloListaTareas.clear();
+            for(int i=0; i<listaPersonas.get(personaSeleccionada).getTareas().size(); i++){
+                agregarDato(listaPersonas.get(personaSeleccionada).getTareas().get(i).getNombre(), modeloListaTareas);
+            }
+            lbFechaTarea.setText("");
+        }
+        catch(ArrayIndexOutOfBoundsException ex1){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una tarea de la lista");
         }
     }//GEN-LAST:event_btnEliminarTareaActionPerformed
 
     private void btnAbonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbonarActionPerformed
         //Botón abonar
-        int personaAAbonar = jListNombres.getSelectedIndex();
-        int cantidadAAbonar = Integer.parseInt(txtAbono.getText());
-        listaPersonas.get(personaAAbonar).abonar(cantidadAAbonar);
-        txtCantidadQueDebe.setText(listaPersonas.get(personaAAbonar).getDineroAPagar()+"");
-        txtAbono.setText("");
+        try{
+            int personaAAbonar = jListNombres.getSelectedIndex();
+            int cantidadAAbonar = Integer.parseInt(txtAbono.getText());
+            listaPersonas.get(personaAAbonar).abonar(cantidadAAbonar);
+            txtCantidadQueDebe.setText(listaPersonas.get(personaAAbonar).getDineroAPagar()+"");
+            txtAbono.setText("");
+        }
+        catch(ArrayIndexOutOfBoundsException ex1){
+            JOptionPane.showMessageDialog(null, "Verifique que hay sido seleccionada una persona");
+        }
+        catch(NumberFormatException ex2){
+            JOptionPane.showMessageDialog(null, "No ingreso ningún monto");
+        }
+        
     }//GEN-LAST:event_btnAbonarActionPerformed
 
     private void jListNombresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListNombresMouseClicked
         //Click en la lista de nombres
-        int indiceLista = jListNombres.getSelectedIndex();
-        modeloListaTareas.clear();
-        for(int i=0; i<listaPersonas.get(indiceLista).getTareas().size(); i++){
-            agregarDato(listaPersonas.get(indiceLista).getTareas().get(i).getNombre(), modeloListaTareas);
+        try{
+            int indiceLista = jListNombres.getSelectedIndex();
+            modeloListaTareas.clear();
+            for(int i=0; i<listaPersonas.get(indiceLista).getTareas().size(); i++){
+                agregarDato(listaPersonas.get(indiceLista).getTareas().get(i).getNombre(), modeloListaTareas);
+            }
+            txtCantidadQueDebe.setText(listaPersonas.get(indiceLista).getDineroAPagar()+"");
+            lbFechaTarea.setText("");
         }
-        txtCantidadQueDebe.setText(listaPersonas.get(indiceLista).getDineroAPagar()+"");
+        catch(ArrayIndexOutOfBoundsException ex2){
+            JOptionPane.showMessageDialog(null, "La lista de personas está vacía");
+        }
     }//GEN-LAST:event_jListNombresMouseClicked
+
+    private void jListTareasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListTareasMouseClicked
+        //Click en la lista de Tareas
+        try{
+            int tareaSeleccionada = jListTareas.getSelectedIndex();
+            int personaSeleccionada = jListNombres.getSelectedIndex();
+            lbFechaTarea.setText(listaPersonas.get(personaSeleccionada).getTareas().get(tareaSeleccionada).getFechaLimite());
+        }
+        catch(ArrayIndexOutOfBoundsException ex1){
+            JOptionPane.showMessageDialog(null, "Faltó seleccionar una persona o una tarea, verifíquelo");
+        }
+    }//GEN-LAST:event_jListTareasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -396,6 +455,7 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lbAbono;
     private javax.swing.JLabel lbCantidadQueDebe;
+    private javax.swing.JLabel lbFechaTarea;
     private javax.swing.JLabel lbIngresaFecha;
     private javax.swing.JLabel lbIngresaSuPrecio;
     private javax.swing.JLabel lbNombres;
