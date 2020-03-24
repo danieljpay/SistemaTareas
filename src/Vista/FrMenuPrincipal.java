@@ -24,6 +24,7 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
      */
     public FrMenuPrincipal() {
         initComponents();
+        this.setLocationRelativeTo(null);
         
         //se crean los modelos de los jList
         modeloListaNombres = new DefaultListModel();
@@ -83,6 +84,7 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         lbIngresaFecha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFocusable(false);
 
         lbTitulo.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
         lbTitulo.setText("NicoleTareas");
@@ -302,19 +304,29 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         listaPersonas.get(personaSeleccionada).asignarTarea(nuevaTarea);    //le asignamos la tarea a la persona dentro de la lista con el índice
         //Incrementa el dinero de la persona con cada tarea que se le agregue
         listaPersonas.get(personaSeleccionada).incrementarDineroAPagar(Integer.parseInt(txtIngresaSuPrecio.getText()));
-        txtCantidadQueDebe.setText(listaPersonas.get(personaSeleccionada).getDineroAPagar()+"");
+        
         //reiniciamos los campos
         txtTareaNueva.setText("");
         txtIngresaSuPrecio.setText("");
         txtIngresaFecha.setText("");
+        modeloListaTareas.clear();
+        
+        for(int i=0; i<listaPersonas.get(personaSeleccionada).getTareas().size(); i++){
+            agregarDato(listaPersonas.get(personaSeleccionada).getTareas().get(i).getNombre(), modeloListaTareas);
+        }
+        txtCantidadQueDebe.setText(listaPersonas.get(personaSeleccionada).getDineroAPagar()+"");
     }//GEN-LAST:event_btnAgregarTareaActionPerformed
 
     private void btnEliminarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTareaActionPerformed
         //Botón eliminar tarea
-        int personaAEliminarTarea = jListNombres.getSelectedIndex();
+        int personaSeleccionada = jListNombres.getSelectedIndex();
         int tareaAEliminar = jListTareas.getSelectedIndex();
-        listaPersonas.get(personaAEliminarTarea).eliminarTarea(tareaAEliminar);
+        listaPersonas.get(personaSeleccionada).eliminarTarea(tareaAEliminar);
         
+        modeloListaTareas.clear();
+        for(int i=0; i<listaPersonas.get(personaSeleccionada).getTareas().size(); i++){
+            agregarDato(listaPersonas.get(personaSeleccionada).getTareas().get(i).getNombre(), modeloListaTareas);
+        }
     }//GEN-LAST:event_btnEliminarTareaActionPerformed
 
     private void btnAbonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbonarActionPerformed
@@ -322,12 +334,13 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         int personaAAbonar = jListNombres.getSelectedIndex();
         int cantidadAAbonar = Integer.parseInt(txtAbono.getText());
         listaPersonas.get(personaAAbonar).abonar(cantidadAAbonar);
+        txtCantidadQueDebe.setText(listaPersonas.get(personaAAbonar).getDineroAPagar()+"");
+        txtAbono.setText("");
     }//GEN-LAST:event_btnAbonarActionPerformed
 
     private void jListNombresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListNombresMouseClicked
         //Click en la lista de nombres
         int indiceLista = jListNombres.getSelectedIndex();
-        txtCantidadQueDebe.setText(listaPersonas.get(indiceLista).getDineroAPagar()+"");
         modeloListaTareas.clear();
         for(int i=0; i<listaPersonas.get(indiceLista).getTareas().size(); i++){
             agregarDato(listaPersonas.get(indiceLista).getTareas().get(i).getNombre(), modeloListaTareas);
