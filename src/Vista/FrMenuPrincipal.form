@@ -26,16 +26,6 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btnAgregarNombre" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtNuevaPersona" min="-2" pref="295" max="-2" attributes="0"/>
-                              <Component id="lbNuevaPersona" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane2" min="-2" pref="315" max="-2" attributes="0"/>
@@ -45,6 +35,19 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnEliminarPersona" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
+                          <Component id="btnAgregarNombre" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lbNuevaPersona" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNuevaPersona" min="-2" pref="295" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace pref="24" max="32767" attributes="0"/>
@@ -95,7 +98,7 @@
                   </Group>
               </Group>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="306" max="-2" attributes="0"/>
               <Component id="lbTitulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
@@ -107,12 +110,20 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lbTitulo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbTareaNueva" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbNuevaPersona" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbIngresaSuPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbIngresaFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lbTareaNueva" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbIngresaSuPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbIngresaFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lbNuevaPersona" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -142,10 +153,10 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtNuevaPersona" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="txtTareaNueva" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="txtIngresaSuPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtIngresaFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTareaNueva" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="txtIngresaSuPrecio" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="txtIngresaFecha" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="txtNuevaPersona" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnAgregarNombre" min="-2" max="-2" attributes="0"/>
@@ -169,7 +180,7 @@
               <Component id="txtAbono" min="-2" pref="37" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnAbonar" min="-2" pref="28" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="73" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -288,16 +299,16 @@
         <Property name="text" type="java.lang.String" value="&#xbf;desea abonar?"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbNuevaPersona">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ingrese nombre de la nueva persona:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="txtCantidadQueDebe">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="16" style="0"/>
         </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbNuevaPersona">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ingrese nombre de la nueva persona:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTareaNueva">

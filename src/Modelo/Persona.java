@@ -14,13 +14,13 @@ import java.util.ArrayList;
 public class Persona {
     private String nombre;
     private int dineroAPagar;
-    private ArrayList<Tarea> tareas;
+    private ArrayList<Tarea> listaTareas;
 
     //constructor
     public Persona(String nombre) {
         this.nombre = nombre;
-        dineroAPagar = 0;
-        tareas=null;
+        this.dineroAPagar = 0;
+        this.listaTareas = new ArrayList<Tarea>();
     }
 
     //métodos set
@@ -33,7 +33,7 @@ public class Persona {
     }
 
     public void setTareas(ArrayList<Tarea> tareas) {
-        this.tareas = tareas;
+        this.listaTareas = tareas;
     }
     
     
@@ -47,20 +47,21 @@ public class Persona {
     }
 
     public ArrayList<Tarea> getTareas() {
-        return tareas;
+        return listaTareas;
     }
     
     
     //asignarTarea
-    public void asignarTarea(Tarea tarea){
-        tareas.add(tarea);
+    public void asignarTarea(Tarea unaTarea){
+        listaTareas.add(unaTarea);
     }
     
     //eliminarTarea
     public void eliminarTarea(int indiceTarea){
-        tareas.remove(indiceTarea);
+        listaTareas.remove(indiceTarea);
     }
     
+    //incrementarDineroAPagar o IncrementarDeuda
     public void incrementarDineroAPagar(int cantidad){
         dineroAPagar += cantidad;
     }

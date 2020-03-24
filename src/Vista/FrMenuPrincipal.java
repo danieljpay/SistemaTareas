@@ -73,8 +73,8 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         txtNuevaPersona = new javax.swing.JTextField();
         txtAbono = new javax.swing.JTextField();
         lbAbono = new javax.swing.JLabel();
-        lbNuevaPersona = new javax.swing.JLabel();
         txtCantidadQueDebe = new javax.swing.JLabel();
+        lbNuevaPersona = new javax.swing.JLabel();
         txtTareaNueva = new javax.swing.JTextField();
         lbTareaNueva = new javax.swing.JLabel();
         lbIngresaSuPrecio = new javax.swing.JLabel();
@@ -139,9 +139,9 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
 
         lbAbono.setText("¿desea abonar?");
 
-        lbNuevaPersona.setText("Ingrese nombre de la nueva persona:");
-
         txtCantidadQueDebe.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+
+        lbNuevaPersona.setText("Ingrese nombre de la nueva persona:");
 
         lbTareaNueva.setText("Ingresa nombre de la tarea nueva:");
 
@@ -156,20 +156,22 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnAgregarNombre)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtNuevaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lbNuevaPersona))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbNombres)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnEliminarPersona)))
+                        .addComponent(btnEliminarPersona))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(205, 205, 205)
+                            .addComponent(btnAgregarNombre))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(23, 23, 23)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbNuevaPersona)
+                                .addComponent(txtNuevaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -215,12 +217,17 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbTitulo)
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbTareaNueva)
-                    .addComponent(lbNuevaPersona)
-                    .addComponent(lbIngresaSuPrecio)
-                    .addComponent(lbIngresaFecha))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbTareaNueva)
+                            .addComponent(lbIngresaSuPrecio)
+                            .addComponent(lbIngresaFecha)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbNuevaPersona)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
@@ -243,10 +250,10 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
                                 .addComponent(txtCantidadQueDebe, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNuevaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTareaNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIngresaSuPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIngresaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTareaNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIngresaSuPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIngresaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNuevaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAgregarNombre)
                         .addGap(11, 11, 11)
@@ -264,7 +271,7 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(txtAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAbonar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
@@ -282,19 +289,18 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
 
     private void btnEliminarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPersonaActionPerformed
         //Botón eliminar nombre
+        listaPersonas.remove(jListNombres.getSelectedIndex());  //se elimina la persona del array de personas
         eliminarDato(jListNombres.getSelectedIndex(), modeloListaNombres);  //elimina el nombre seleccionado de la lista grafica de nombres
-
-        //      *******************genera error al eliminar la persona del array (es porque está vacío el array)**************************
-        //listaPersonas.remove(jListNombres.getSelectedIndex());  //se elimina la persona del array de personas
     }//GEN-LAST:event_btnEliminarPersonaActionPerformed
 
     private void btnAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTareaActionPerformed
         //Botón agregar tarea
-        int personaAAgregarTarea = jListNombres.getSelectedIndex();     //índice de la persona dentro de la lista
-        Tarea tarea = new Tarea(txtTareaNueva.getText(), Integer.parseInt(txtIngresaSuPrecio.getText()), txtIngresaFecha.getText());    //creación del objeto tarea
-        listaPersonas.get(personaAAgregarTarea).asignarTarea(tarea);    //le asignamos la tarea a la persona dentro de la lista con el índice
+        int personaSeleccionada = jListNombres.getSelectedIndex();     //índice de la persona dentro de la lista
+        System.out.println(jListNombres.getSelectedIndex());
+        Tarea nuevaTarea = new Tarea(txtTareaNueva.getText(), Integer.parseInt(txtIngresaSuPrecio.getText()), txtIngresaFecha.getText());    //creación del objeto tarea
+        listaPersonas.get(personaSeleccionada).asignarTarea(nuevaTarea);    //le asignamos la tarea a la persona dentro de la lista con el índice
         //Incrementa el dinero de la persona con cada tarea que se le agregue
-        listaPersonas.get(personaAAgregarTarea).incrementarDineroAPagar(listaPersonas.get(personaAAgregarTarea).getDineroAPagar()+Integer.parseInt(txtIngresaSuPrecio.getText()));
+        listaPersonas.get(personaSeleccionada).incrementarDineroAPagar(listaPersonas.get(personaSeleccionada).getDineroAPagar()+Integer.parseInt(txtIngresaSuPrecio.getText()));
     }//GEN-LAST:event_btnAgregarTareaActionPerformed
 
     private void btnEliminarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTareaActionPerformed
@@ -314,8 +320,9 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
 
     private void jListNombresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListNombresMouseClicked
         //Click en la lista de nombres
+        System.out.println(jListNombres.getSelectedIndex());
         
-        /*      *********************Genera error al hacerle click a una persona***********************
+        /*     *********************Genera error al hacerle click a una persona***********************
         int indiceLista = jListNombres.getSelectedIndex();
         for(int i=0; i<listaPersonas.get(indiceLista).getTareas().size(); i++){
             agregarDato(listaPersonas.get(indiceLista).getTareas().get(i).getNombre(), modeloListaTareas);
