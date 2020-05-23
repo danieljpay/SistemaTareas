@@ -5,10 +5,10 @@
  */
 package Vista;
 
+import Controlador.Controller;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import Modelo.*;
-import java.util.ArrayList;
 
 /**
  *
@@ -17,12 +17,12 @@ import java.util.ArrayList;
 public class FrMenuPrincipal extends javax.swing.JFrame {
 
     public DefaultListModel modeloListaNombres, modeloListaTareas;
-    public ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
+    Controller controlador = new Controller();
     
     /**
      * Creates new form MenuPrincipal
      */
-    public FrMenuPrincipal() {
+    public FrMenuPrincipal(Controller controlador) {
         initComponents();
         this.setLocationRelativeTo(null);
         
@@ -44,14 +44,13 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
     public void eliminarDato(int index, DefaultListModel lista){
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Realmente desea eliminar este nombre?");
         if(respuesta == 0){
-            listaPersonas.remove(index);  //se elimina la persona del array de personas
+            controlador.getListaPersonas().remove(index);  //se elimina la persona del array de personas
             lista.remove(index);
             modeloListaTareas.clear();
             lbFechaTarea.setText("");
             txtCantidadQueDebe.setText("");
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -294,13 +293,12 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
     private void btnAgregarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarNombreActionPerformed
         //Botón agregar nombre
         try{
-            if(txtNuevaPersona.getText().equals("")){
+            String nombrePersona = txtNuevaPersona.getText();
+            if(nombrePersona.equals("")){
                 throw new CampoVacioException("Falta llenar un campo");
             }
-            agregarDato(txtNuevaPersona.getText(), modeloListaNombres); //se agrega el nombre a la vista de la lista
-            String nombrePersona = txtNuevaPersona.getText();
-            Persona nuevaPersona = new Persona(nombrePersona);
-            listaPersonas.add(nuevaPersona);  //se crea la persona y se mete al arryalist
+            agregarDato(nombrePersona, modeloListaNombres); //se agrega el nombre a la vista de la lista
+            Persona nuevaPersona = controlador.agregarPersona(nombrePersona);
             txtCantidadQueDebe.setText(nuevaPersona.getDineroAPagar()+"");
             txtNuevaPersona.setText("");    //setea jText en blanco
         }
@@ -319,10 +317,10 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         //Botón agregar tarea
         try{
             int personaSeleccionada = jListNombres.getSelectedIndex();     //índice de la persona dentro de la lista
-            Tarea nuevaTarea = new Tarea(txtTareaNueva.getText(), Integer.parseInt(txtIngresaSuPrecio.getText()), txtIngresaFecha.getText());    //creación del objeto tarea
-            listaPersonas.get(personaSeleccionada).asignarTarea(nuevaTarea);    //le asignamos la tarea a la persona dentro de la lista con el índice
-            //Incrementa el dinero de la persona con cada tarea que se le agregue
-            listaPersonas.get(personaSeleccionada).incrementarDineroAPagar(Integer.parseInt(txtIngresaSuPrecio.getText()));
+            String nombreTarea = txtTareaNueva.getText();
+            int precioTarea = Integer.parseInt(txtIngresaSuPrecio.getText());
+            String fechaEntrega = txtIngresaFecha.getText();
+            controlador.agregarTarea(personaSeleccionada, nombreTarea, precioTarea, fechaEntrega);
 
             //reiniciamos los campos
             txtTareaNueva.setText("");
@@ -330,10 +328,10 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
             txtIngresaFecha.setText("");
             modeloListaTareas.clear();
 
-            for(int i=0; i<listaPersonas.get(personaSeleccionada).getTareas().size(); i++){
-                agregarDato(listaPersonas.get(personaSeleccionada).getTareas().get(i).getNombre(), modeloListaTareas);
+            for(int i=0; i<controlador.getListaPersonas().get(personaSeleccionada).getTareas().size(); i++){
+                agregarDato(controlador.getListaPersonas().get(personaSeleccionada).getTareas().get(i).getNombre(), modeloListaTareas);
             }
-            txtCantidadQueDebe.setText(listaPersonas.get(personaSeleccionada).getDineroAPagar()+"");
+            txtCantidadQueDebe.setText(controlador.getListaPersonas().get(personaSeleccionada).getDineroAPagar()+"");
         }
         catch(ArrayIndexOutOfBoundsException ex1){
             JOptionPane.showMessageDialog(null, "Debe seleccionar a una persona de la lista");
@@ -348,11 +346,11 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         try{
             int personaSeleccionada = jListNombres.getSelectedIndex();
             int tareaAEliminar = jListTareas.getSelectedIndex();
-            listaPersonas.get(personaSeleccionada).eliminarTarea(tareaAEliminar);
+            controlador.eliminarTarea(personaSeleccionada, tareaAEliminar);
 
             modeloListaTareas.clear();
-            for(int i=0; i<listaPersonas.get(personaSeleccionada).getTareas().size(); i++){
-                agregarDato(listaPersonas.get(personaSeleccionada).getTareas().get(i).getNombre(), modeloListaTareas);
+            for(int i=0; i<controlador.getListaPersonas().get(personaSeleccionada).getTareas().size(); i++){
+                agregarDato(controlador.getListaPersonas().get(personaSeleccionada).getTareas().get(i).getNombre(), modeloListaTareas);
             }
             lbFechaTarea.setText("");
         }
@@ -366,8 +364,8 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         try{
             int personaAAbonar = jListNombres.getSelectedIndex();
             int cantidadAAbonar = Integer.parseInt(txtAbono.getText());
-            listaPersonas.get(personaAAbonar).abonar(cantidadAAbonar);
-            txtCantidadQueDebe.setText(listaPersonas.get(personaAAbonar).getDineroAPagar()+"");
+            controlador.abonar(personaAAbonar, cantidadAAbonar);
+            txtCantidadQueDebe.setText(controlador.getListaPersonas().get(personaAAbonar).getDineroAPagar()+"");
             txtAbono.setText("");
         }
         catch(ArrayIndexOutOfBoundsException ex1){
@@ -384,10 +382,10 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         try{
             int indiceLista = jListNombres.getSelectedIndex();
             modeloListaTareas.clear();
-            for(int i=0; i<listaPersonas.get(indiceLista).getTareas().size(); i++){
-                agregarDato(listaPersonas.get(indiceLista).getTareas().get(i).getNombre(), modeloListaTareas);
+            for(int i=0; i<controlador.getListaPersonas().get(indiceLista).getTareas().size(); i++){
+                agregarDato(controlador.getListaPersonas().get(indiceLista).getTareas().get(i).getNombre(), modeloListaTareas);
             }
-            txtCantidadQueDebe.setText(listaPersonas.get(indiceLista).getDineroAPagar()+"");
+            txtCantidadQueDebe.setText(controlador.getListaPersonas().get(indiceLista).getDineroAPagar()+"");
             lbFechaTarea.setText("");
         }
         catch(ArrayIndexOutOfBoundsException ex2){
@@ -400,7 +398,7 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         try{
             int tareaSeleccionada = jListTareas.getSelectedIndex();
             int personaSeleccionada = jListNombres.getSelectedIndex();
-            lbFechaTarea.setText(listaPersonas.get(personaSeleccionada).getTareas().get(tareaSeleccionada).getFechaLimite());
+            lbFechaTarea.setText(controlador.getListaPersonas().get(personaSeleccionada).getTareas().get(tareaSeleccionada).getFechaLimite());
         }
         catch(ArrayIndexOutOfBoundsException ex1){
             JOptionPane.showMessageDialog(null, "Faltó seleccionar una persona o una tarea, verifíquelo");
@@ -437,8 +435,9 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            private Controller controlador;
             public void run() {
-                new FrMenuPrincipal().setVisible(true);
+                new FrMenuPrincipal(this.controlador).setVisible(true);
             }
         });
     }
