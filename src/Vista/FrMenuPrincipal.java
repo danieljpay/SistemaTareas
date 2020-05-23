@@ -66,7 +66,7 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lbTitulo.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
-        lbTitulo.setText("NicoleTareas");
+        lbTitulo.setText("Sistema de tareas");
 
         lbNombres.setText("Nombres");
 
@@ -197,71 +197,69 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
                             .addComponent(txtIngresaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 57, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(306, 306, 306)
+                .addGap(299, 299, 299)
                 .addComponent(lbTitulo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbTitulo)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lbTareaNueva)
-                                    .addComponent(lbIngresaSuPrecio)
-                                    .addComponent(lbIngresaFecha)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbNuevaPersona)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(btnAgregarTarea)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbTareasPendientes)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lbFechaTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnEliminarTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lbCantidadQueDebe))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNuevaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(txtTareaNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtIngresaSuPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtIngresaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAgregarNombre)
-                                .addGap(11, 11, 11)
-                                .addComponent(lbNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEliminarPersona)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addComponent(lbAbono)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAbonar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(41, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(lbTitulo)
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbTareaNueva)
+                            .addComponent(lbIngresaSuPrecio)
+                            .addComponent(lbIngresaFecha)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(lbNuevaPersona)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(btnAgregarTarea)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbTareasPendientes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbFechaTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminarTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtCantidadQueDebe, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(195, 195, 195))))
+                        .addComponent(lbCantidadQueDebe))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNuevaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtTareaNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtIngresaSuPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtIngresaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAgregarNombre)
+                        .addGap(11, 11, 11)
+                        .addComponent(lbNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEliminarPersona)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(lbAbono)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAbonar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(345, Short.MAX_VALUE)
+                .addComponent(txtCantidadQueDebe, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(195, 195, 195))
         );
 
         pack();
@@ -274,7 +272,6 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
             if(nombrePersona.equals("")){
                 throw new CampoVacioException("Falta llenar un campo");
             }
-            
             Persona nuevaPersona = controlador.agregarPersona(nombrePersona);
             // actualiza campos
             txtCantidadQueDebe.setText(nuevaPersona.getDineroAPagar()+"");
@@ -282,13 +279,12 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
             txtNuevaPersona.setText("");    //setea jText en blanco
         }
         catch(CampoVacioException ex1){
-            JOptionPane.showMessageDialog(null, "Debe llenar el campo del nombre de la persona para agregar");
+            JOptionPane.showMessageDialog(this, "Debe llenar el campo del nombre de la persona para agregar", "Error al agregar Persona", JOptionPane.ERROR_MESSAGE );
         }
     }//GEN-LAST:event_btnAgregarNombreActionPerformed
 
     private void btnEliminarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPersonaActionPerformed
         //Botón eliminar nombre
-        
         int personaSeleccionada = jListNombres.getSelectedIndex();
         controlador.eliminarPersona(personaSeleccionada);
         //  setea campos en blanco
@@ -301,11 +297,11 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
 
     private void btnAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTareaActionPerformed
         //Botón agregar tarea
+        int personaSeleccionada = jListNombres.getSelectedIndex();     //índice de la persona dentro de la lista
+        String nombreTarea = txtTareaNueva.getText();
+        int precioTarea = Integer.parseInt(txtIngresaSuPrecio.getText());
+        String fechaEntrega = txtIngresaFecha.getText();
         try{
-            int personaSeleccionada = jListNombres.getSelectedIndex();     //índice de la persona dentro de la lista
-            String nombreTarea = txtTareaNueva.getText();
-            int precioTarea = Integer.parseInt(txtIngresaSuPrecio.getText());
-            String fechaEntrega = txtIngresaFecha.getText();
             controlador.agregarTarea(personaSeleccionada, nombreTarea, precioTarea, fechaEntrega);
             //  actualiza campos
             txtTareaNueva.setText("");
@@ -315,10 +311,10 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
             jListTareas.setModel(controlador.getModeloListaTareas());
         }
         catch(ArrayIndexOutOfBoundsException ex1){
-            JOptionPane.showMessageDialog(null, "Debe seleccionar a una persona de la lista");
+            JOptionPane.showMessageDialog(this, "Debe seleccionar a una persona de la lista", "Error al agregar tarea", JOptionPane.WARNING_MESSAGE);
         }
         catch(NumberFormatException ex2){
-            JOptionPane.showMessageDialog(null, "Faltó llenar un campo sobre la tarea");
+            JOptionPane.showMessageDialog(this, "Faltó llenar el nombre o precio de la tarea", "Error al agregar tarea", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAgregarTareaActionPerformed
 
@@ -333,7 +329,7 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
             jListTareas.setModel(controlador.getModeloListaTareas());
         }
         catch(ArrayIndexOutOfBoundsException ex1){
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una tarea de la lista");
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una tarea de la lista", "Error al eliminar tarea", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarTareaActionPerformed
 
@@ -343,31 +339,29 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
             int personaAAbonar = jListNombres.getSelectedIndex();
             int cantidadAAbonar = Integer.parseInt(txtAbono.getText());
             controlador.abonar(personaAAbonar, cantidadAAbonar);
+            //  actualiza campos
             txtCantidadQueDebe.setText(controlador.getListaPersonas().get(personaAAbonar).getDineroAPagar()+"");
             txtAbono.setText("");
         }
         catch(ArrayIndexOutOfBoundsException ex1){
-            JOptionPane.showMessageDialog(null, "Verifique que hay sido seleccionada una persona");
+            JOptionPane.showMessageDialog(this, "Verifique que hay sido seleccionada una persona", "Error de selección", JOptionPane.WARNING_MESSAGE);
         }
         catch(NumberFormatException ex2){
-            JOptionPane.showMessageDialog(null, "No ingreso ningún monto");
+            JOptionPane.showMessageDialog(this, "No ingreso ningún monto", "Error al abonar", JOptionPane.ERROR_MESSAGE);
         }
-        
     }//GEN-LAST:event_btnAbonarActionPerformed
 
     private void jListNombresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListNombresMouseClicked
         //Click en la lista de nombres
         try{
             int indiceLista = jListNombres.getSelectedIndex();
-            controlador.getModeloListaTareas().clear();
-            for(int i=0; i<controlador.getListaPersonas().get(indiceLista).getTareas().size(); i++){
-                controlador.agregarDato(controlador.getListaPersonas().get(indiceLista).getTareas().get(i).getNombre(), controlador.getModeloListaTareas());
-            }
+            controlador.actualizarTareas(indiceLista);
+            //  actualiza campos
             txtCantidadQueDebe.setText(controlador.getListaPersonas().get(indiceLista).getDineroAPagar()+"");
             lbFechaTarea.setText("");
         }
         catch(ArrayIndexOutOfBoundsException ex2){
-            JOptionPane.showMessageDialog(null, "La lista de personas está vacía");
+            JOptionPane.showMessageDialog(this, "La lista de personas está vacía", "Lista vacía", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jListNombresMouseClicked
 
@@ -379,7 +373,7 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
             lbFechaTarea.setText(controlador.getListaPersonas().get(personaSeleccionada).getTareas().get(tareaSeleccionada).getFechaLimite());
         }
         catch(ArrayIndexOutOfBoundsException ex1){
-            JOptionPane.showMessageDialog(null, "Faltó seleccionar una persona o una tarea, verifíquelo");
+            JOptionPane.showMessageDialog(null, "Faltó seleccionar una persona o una tarea, verifíquelo", "Error de selección", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jListTareasMouseClicked
 

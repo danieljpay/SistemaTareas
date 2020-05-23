@@ -52,19 +52,6 @@ public class Controller {
     
     //******************************************************FrMenuPrincipal***************************************
     //funcion agregar dato a un modelo de lista
-    public void agregarDato(String dato, DefaultListModel lista){
-        lista.addElement(dato);
-    }
-    
-    //funcion eliminar dato de un modelo de lista
-    public void eliminarDato(int index, DefaultListModel lista){
-        int respuesta = JOptionPane.showConfirmDialog(null, "¿Realmente desea eliminar este nombre?");
-        if(respuesta == 0){
-            listaPersonas.remove(index);  //se elimina la persona del array de personas
-            lista.remove(index);
-            modeloListaTareas.clear();
-        }
-    }
     
     public Persona agregarPersona(String nombrePersona){
         modeloListaNombres.addElement(nombrePersona);
@@ -86,22 +73,23 @@ public class Controller {
         Tarea nuevaTarea = new Tarea(nombreTarea, precioTarea, fechaTarea);
         listaPersonas.get(numPersona).asignarTarea(nuevaTarea);
         listaPersonas.get(numPersona).incrementarDineroAPagar(precioTarea);
-        modeloListaTareas.clear();
-        for(int i=0; i<listaPersonas.get(numPersona).getTareas().size(); i++){
-            modeloListaTareas.addElement(listaPersonas.get(numPersona).getTareas().get(i).getNombre());
-        }
+        actualizarTareas(numPersona);
     }
     
     public void eliminarTarea(int numPersona, int numTarea){
         listaPersonas.get(numPersona).eliminarTarea(numTarea);
-        modeloListaTareas.clear();
-        for(int i=0; i<listaPersonas.get(numPersona).getTareas().size(); i++){
-            modeloListaTareas.addElement(listaPersonas.get(numPersona).getTareas().get(i).getNombre());
-        }
+        actualizarTareas(numPersona);
     }
     
     public void abonar(int numPersona, int cantidad){
         listaPersonas.get(numPersona).abonar(cantidad);
+    }
+    
+    public void actualizarTareas(int numPersona){
+        modeloListaTareas.clear();
+        for(int i=0; i<listaPersonas.get(numPersona).getTareas().size(); i++){
+            modeloListaTareas.addElement(listaPersonas.get(numPersona).getTareas().get(i).getNombre());
+        }
     }
     
 }
