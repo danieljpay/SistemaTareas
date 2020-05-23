@@ -6,7 +6,6 @@
 package Vista;
 
 import Controlador.Controller;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import Modelo.*;
 
@@ -15,8 +14,6 @@ import Modelo.*;
  * @author plupy
  */
 public class FrMenuPrincipal extends javax.swing.JFrame {
-
-    public DefaultListModel modeloListaNombres, modeloListaTareas;
     Controller controlador = new Controller();
     
     /**
@@ -26,30 +23,9 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         
-        //se crean los modelos de los jList
-        modeloListaNombres = new DefaultListModel();
-        modeloListaTareas = new DefaultListModel();
-        
         //se setea los modelos a la interfaz de las listas
-        jListNombres.setModel(modeloListaNombres);
-        jListTareas.setModel(modeloListaTareas);
-    }
-    
-    //funcion agregar dato a un modelo de lista
-    public void agregarDato(String dato, DefaultListModel lista){
-        lista.addElement(dato);
-    }
-    
-    //funcion eliminar dato de un modelo de lista
-    public void eliminarDato(int index, DefaultListModel lista){
-        int respuesta = JOptionPane.showConfirmDialog(null, "¿Realmente desea eliminar este nombre?");
-        if(respuesta == 0){
-            controlador.getListaPersonas().remove(index);  //se elimina la persona del array de personas
-            lista.remove(index);
-            modeloListaTareas.clear();
-            lbFechaTarea.setText("");
-            txtCantidadQueDebe.setText("");
-        }
+        jListNombres.setModel(controlador.getModeloListaNombres());
+        jListTareas.setModel(controlador.getModeloListaTareas());
     }
 
     /**
@@ -258,11 +234,12 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lbCantidadQueDebe))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtTareaNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtIngresaSuPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtIngresaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNuevaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNuevaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txtTareaNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtIngresaSuPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtIngresaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAgregarNombre)
                                 .addGap(11, 11, 11)
@@ -292,14 +269,16 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
 
     private void btnAgregarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarNombreActionPerformed
         //Botón agregar nombre
+        String nombrePersona = txtNuevaPersona.getText();
         try{
-            String nombrePersona = txtNuevaPersona.getText();
             if(nombrePersona.equals("")){
                 throw new CampoVacioException("Falta llenar un campo");
             }
-            agregarDato(nombrePersona, modeloListaNombres); //se agrega el nombre a la vista de la lista
+            
             Persona nuevaPersona = controlador.agregarPersona(nombrePersona);
+            // actualiza campos
             txtCantidadQueDebe.setText(nuevaPersona.getDineroAPagar()+"");
+            jListNombres.setModel(controlador.getModeloListaNombres());
             txtNuevaPersona.setText("");    //setea jText en blanco
         }
         catch(CampoVacioException ex1){
@@ -309,8 +288,15 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
 
     private void btnEliminarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPersonaActionPerformed
         //Botón eliminar nombre
+        
         int personaSeleccionada = jListNombres.getSelectedIndex();
-        eliminarDato(personaSeleccionada, modeloListaNombres);  //elimina el nombre seleccionado de la lista grafica de nombres
+        controlador.eliminarPersona(personaSeleccionada);
+        //  setea campos en blanco
+        lbFechaTarea.setText("");
+        txtCantidadQueDebe.setText("");
+        //  actualiza las listas
+        jListNombres.setModel(controlador.getModeloListaNombres());
+        jListTareas.setModel(controlador.getModeloListaTareas());
     }//GEN-LAST:event_btnEliminarPersonaActionPerformed
 
     private void btnAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTareaActionPerformed
@@ -321,17 +307,12 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
             int precioTarea = Integer.parseInt(txtIngresaSuPrecio.getText());
             String fechaEntrega = txtIngresaFecha.getText();
             controlador.agregarTarea(personaSeleccionada, nombreTarea, precioTarea, fechaEntrega);
-
-            //reiniciamos los campos
+            //  actualiza campos
             txtTareaNueva.setText("");
             txtIngresaSuPrecio.setText("");
             txtIngresaFecha.setText("");
-            modeloListaTareas.clear();
-
-            for(int i=0; i<controlador.getListaPersonas().get(personaSeleccionada).getTareas().size(); i++){
-                agregarDato(controlador.getListaPersonas().get(personaSeleccionada).getTareas().get(i).getNombre(), modeloListaTareas);
-            }
             txtCantidadQueDebe.setText(controlador.getListaPersonas().get(personaSeleccionada).getDineroAPagar()+"");
+            jListTareas.setModel(controlador.getModeloListaTareas());
         }
         catch(ArrayIndexOutOfBoundsException ex1){
             JOptionPane.showMessageDialog(null, "Debe seleccionar a una persona de la lista");
@@ -347,12 +328,9 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
             int personaSeleccionada = jListNombres.getSelectedIndex();
             int tareaAEliminar = jListTareas.getSelectedIndex();
             controlador.eliminarTarea(personaSeleccionada, tareaAEliminar);
-
-            modeloListaTareas.clear();
-            for(int i=0; i<controlador.getListaPersonas().get(personaSeleccionada).getTareas().size(); i++){
-                agregarDato(controlador.getListaPersonas().get(personaSeleccionada).getTareas().get(i).getNombre(), modeloListaTareas);
-            }
+            //  actualiza campos
             lbFechaTarea.setText("");
+            jListTareas.setModel(controlador.getModeloListaTareas());
         }
         catch(ArrayIndexOutOfBoundsException ex1){
             JOptionPane.showMessageDialog(null, "Debe seleccionar una tarea de la lista");
@@ -381,9 +359,9 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         //Click en la lista de nombres
         try{
             int indiceLista = jListNombres.getSelectedIndex();
-            modeloListaTareas.clear();
+            controlador.getModeloListaTareas().clear();
             for(int i=0; i<controlador.getListaPersonas().get(indiceLista).getTareas().size(); i++){
-                agregarDato(controlador.getListaPersonas().get(indiceLista).getTareas().get(i).getNombre(), modeloListaTareas);
+                controlador.agregarDato(controlador.getListaPersonas().get(indiceLista).getTareas().get(i).getNombre(), controlador.getModeloListaTareas());
             }
             txtCantidadQueDebe.setText(controlador.getListaPersonas().get(indiceLista).getDineroAPagar()+"");
             lbFechaTarea.setText("");

@@ -148,11 +148,13 @@
                               <Component id="lbCantidadQueDebe" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtTareaNueva" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="txtIngresaSuPrecio" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="txtIngresaFecha" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txtNuevaPersona" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="txtTareaNueva" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                      <Component id="txtIngresaSuPrecio" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                      <Component id="txtIngresaFecha" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnAgregarNombre" min="-2" max="-2" attributes="0"/>
