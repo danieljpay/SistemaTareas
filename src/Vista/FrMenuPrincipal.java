@@ -62,6 +62,8 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         txtIngresaFecha = new javax.swing.JTextField();
         lbIngresaFecha = new javax.swing.JLabel();
         lbFechaTarea = new javax.swing.JLabel();
+        btnGuardarDatos = new javax.swing.JButton();
+        btnCargarDatos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,29 +137,49 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
 
         lbIngresaFecha.setText("Ingresa fecha límite:");
 
+        btnGuardarDatos.setText("Guardar datos");
+        btnGuardarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarDatosActionPerformed(evt);
+            }
+        });
+
+        btnCargarDatos.setText("Cargar datos");
+        btnCargarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarDatosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbNombres)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnEliminarPersona))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(205, 205, 205)
-                            .addComponent(btnAgregarNombre))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(23, 23, 23)
+                            .addGap(31, 31, 31)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lbNuevaPersona)
-                                .addComponent(txtNuevaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbNombres)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(btnEliminarPersona))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(205, 205, 205)
+                                .addComponent(btnAgregarNombre))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbNuevaPersona)
+                                    .addComponent(txtNuevaPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(btnCargarDatos)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnGuardarDatos)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -254,7 +276,10 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnAbonar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAbonar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardarDatos)
+                    .addComponent(btnCargarDatos))
                 .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(345, Short.MAX_VALUE)
@@ -377,6 +402,17 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jListTareasMouseClicked
 
+    private void btnGuardarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarDatosActionPerformed
+        //btnGuardarDatos
+        controlador.serializarDatos();
+    }//GEN-LAST:event_btnGuardarDatosActionPerformed
+
+    private void btnCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDatosActionPerformed
+        //btnCargarDatos
+        controlador.deserializarDatos();
+        jListNombres.setModel(controlador.getModeloListaNombres());
+    }//GEN-LAST:event_btnCargarDatosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -418,8 +454,10 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAbonar;
     private javax.swing.JButton btnAgregarNombre;
     private javax.swing.JButton btnAgregarTarea;
+    private javax.swing.JButton btnCargarDatos;
     private javax.swing.JButton btnEliminarPersona;
     private javax.swing.JButton btnEliminarTarea;
+    private javax.swing.JButton btnGuardarDatos;
     private javax.swing.JList<String> jListNombres;
     private javax.swing.JList<String> jListTareas;
     private javax.swing.JScrollPane jScrollPane2;

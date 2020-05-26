@@ -7,7 +7,13 @@ package Controlador;
 
 import Modelo.Persona;
 import Modelo.Tarea;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -92,4 +98,38 @@ public class Controller {
         }
     }
     
+    //***********************************Serializacion beta***********************************
+    //Serializar
+    public void serializarDatos(){
+        try{
+            FileOutputStream fos = new FileOutputStream("datosSistemaTareas.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(this.listaPersonas);
+            oos.close();
+            fos.close();
+        }
+        catch(IOException ex1){
+            System.out.println("Imposible abrir el archivo para escribir");
+            JOptionPane.showMessageDialog(null, "Imposible abrir el archivo para escribir", "Error al serializar", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    //Deserializar
+    public void deserializarDatos(){
+        try{
+            FileInputStream fis = new FileInputStream("datosSistemaTareas.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            this.listaPersonas = (ArrayList<Persona>) ois.readObject();
+            ois.close();
+            fis.close();
+        }
+        catch(IOException ex1){
+            System.out.println("Imposible abrir el archivo para leer");
+            JOptionPane.showMessageDialog(null, "Imposible abrir el archivo para leer", "Error al cargar el archivo", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(ClassNotFoundException ex2){
+            System.out.println("El objeto leído no correspone a la clase convertida");
+        }
+    }
+        
 }
