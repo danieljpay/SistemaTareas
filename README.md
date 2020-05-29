@@ -1,13 +1,13 @@
-#Sistema de tareas
+# Sistema de tareas
 Sistema para organizar tareas con fecha de entrega y costo.
 
-#Descripción
+# Descripción
 Sistema de organización de tareas en el cuál es posible agregar personas y asignarle tareas conforme se requiera, a cada tarea que se le agregue a la persona se le puede establecer un costo y fecha de entrega; todo esto está pensado para alguna persona que se dedique a hacer tareas de otras personas y gane dinero por cada tarea que realice, manteniendo una organización con las tareas como con las deudas de sus clientes.
 
-#Instalación
+# Instalación
 Solo se necesita clonar el repositorio con ``git clone`` seguido del enlace del repositorio o en dado caso copiar las clases.
 
-#Modo de uso
+# Modo de uso
 1. Se agrega el nombre del cliente que pidió que le realicen una tarea en el apartado *Ingresar nombre*.
 2. Se presiona a la persona que se le desea agregar la tarea.
 3. En el apartado de *Agregar tarea* se escribe la tarea, costo (obligatorios) y la fecha de entrega (opcional).
@@ -17,7 +17,7 @@ Solo se necesita clonar el repositorio con ``git clone`` seguido del enlace del 
 
 - Si se desea eliminar una persona solo se selecciona en el cuadro de nombres y presiona el botón **Eliminar**.
 
-#Contribuir
+# Contribuir
 El sistema funciona correctamente pero tiene el problema de que no guarda datos, se intentó que lo serializa en algún archivo pero desconozco la razón del porqué no se logra, el código del intento se puede encontrar en la clase Controller hasta abajo como ``//Serialización beta`` y ``//Deserialización beta``.
 
 #Licencia
