@@ -20,5 +20,5 @@ Solo se necesita clonar el repositorio con ``git clone`` seguido del enlace del 
 # Contribuir
 El sistema funciona correctamente pero tiene el problema de que no guarda datos, se intentó que lo serializa en algún archivo pero desconozco la razón del porqué no se logra, el código del intento se puede encontrar en la clase Controller hasta abajo como ``//Serialización beta`` y ``//Deserialización beta``.
 
-#Licencia
+# Licencia
 MIT License
